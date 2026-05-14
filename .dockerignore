@@ -1,0 +1,12 @@
+.git
+.gitignore
+.DS_Store
+**/.DS_Store
+README.md
+docker-compose.yml
+Dockerfile
+.dockerignore
+MVC/public/uploads/menu/*
+MVC/public/uploads/profiles/*
+!MVC/public/uploads/menu/.gitkeep
+!MVC/public/uploads/profiles/.gitkeep

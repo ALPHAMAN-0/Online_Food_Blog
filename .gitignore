@@ -1,0 +1,39 @@
+# macOS junk
+.DS_Store
+**/.DS_Store
+
+# editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# logs
+*.log
+logs/
+
+# uploaded files (user content, not source)
+MVC/public/uploads/menu/*
+MVC/public/uploads/profiles/*
+!MVC/public/uploads/menu/.gitkeep
+!MVC/public/uploads/profiles/.gitkeep
+
+# ---- Docker ----
+# local docker-compose override (developers customize this locally)
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# environment files with secrets
+.env
+.env.*
+!.env.example
+
+# named volumes / bind-mount data directories
+docker/data/
+docker/mysql_data/
+mysql_data/
+db_data/
+
+# build artifacts / caches
+*.pid
+.docker/

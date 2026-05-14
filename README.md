@@ -39,26 +39,45 @@ MVC/
 
 ## Setup
 
-### 1. Create the database
+### Option A - Docker (easiest, recommended)
+Make sure Docker Desktop is running, then:
+```bash
+docker compose up -d --build
+```
+Open <http://localhost:8080/>. That's it - MySQL is started, schema +
+seed are loaded automatically.
+
+To stop:
+```bash
+docker compose down
+```
+To start fresh (wipes DB volume):
+```bash
+docker compose down -v && docker compose up -d --build
+```
+
+### Option B - Local PHP + MySQL
+
+#### 1. Create the database
 ```bash
 mysql -u root -p < MVC/database/schema.sql
 mysql -u root -p < MVC/database/seed.sql
 ```
 
-### 2. Configure DB credentials
+#### 2. Configure DB credentials
 Edit `MVC/config/db.php` if your local MySQL user/password is not
-`root` / empty.
+`root` / empty (or export `DB_HOST`, `DB_USER`, `DB_PASS` env vars).
 
-### 3. Run the app
-**Option A - PHP built-in server** (for development):
+#### 3. Run the app
+**PHP built-in server**:
 ```bash
 cd MVC
 php -S localhost:8000
 ```
-Then open <http://localhost:8000/>.
+Open <http://localhost:8000/>.
 
-**Option B - Apache (XAMPP/MAMP)**: point your DocumentRoot to the `MVC/`
-folder so that `.htaccess` is honored.
+**Apache (XAMPP/MAMP)**: point DocumentRoot to the `MVC/` folder so
+`.htaccess` is honored.
 
 ## Default seeded accounts
 

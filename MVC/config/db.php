@@ -1,11 +1,11 @@
 <?php
 // database connection (PDO)
-// change these if your local mysql user/password is different
+// reads env vars when running inside docker, falls back to local defaults
 
-$db_host = '127.0.0.1';
-$db_name = 'online_food_blog';
-$db_user = 'root';
-$db_pass = '';
+$db_host = getenv('DB_HOST') ?: '127.0.0.1';
+$db_name = getenv('DB_NAME') ?: 'online_food_blog';
+$db_user = getenv('DB_USER') ?: 'root';
+$db_pass = getenv('DB_PASS') ?: '';
 
 try {
     $pdo = new PDO(

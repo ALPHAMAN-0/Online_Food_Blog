@@ -1,0 +1,42 @@
+services:
+
+  app:
+    build: .
+    container_name: foodly_app
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: db
+      DB_NAME: online_food_blog
+      DB_USER: root
+      DB_PASS: rootpass
+    volumes:
+      # mount the local code so edits reload without rebuild
+      - ./MVC:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: foodly_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: online_food_blog
+    ports:
+      - "3307:3306"
+    volumes:
+      - foodly_db_data:/var/lib/mysql
+      # these scripts run once on first container start (empty data dir)
+      - ./MVC/database/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./MVC/database/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-prootpass"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  foodly_db_data:
