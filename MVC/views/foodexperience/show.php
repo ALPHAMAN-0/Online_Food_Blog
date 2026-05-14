@@ -43,7 +43,7 @@
                 <span class="field-error" id="comment-error" style="display:none;"></span>
             </form>
         <?php else: ?>
-            <p style="color:var(--cocoa-light);"><a href="/login">Log in</a> to comment.</p>
+            <p style="color:var(--muted);"><a href="/login">Log in</a> to comment.</p>
         <?php endif; ?>
 
         <ul class="comment-list review-list" id="comment-list">

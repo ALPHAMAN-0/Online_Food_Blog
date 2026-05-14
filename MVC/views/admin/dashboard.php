@@ -1,5 +1,5 @@
 <h1>Dashboard</h1>
-<p style="color:var(--cocoa-light);margin-bottom:1.5rem;">A quick overview of everything in the system.</p>
+<p style="color:var(--muted);margin-bottom:1.5rem;">A quick overview of everything in the system.</p>
 
 <div class="tiles">
     <div class="tile">

@@ -1,7 +1,7 @@
 <div class="container narrow">
     <div class="form-card">
         <h1>Welcome back</h1>
-        <p style="color:var(--cocoa-light);margin-bottom:1.5rem;">Log in to post reviews and share your food experience.</p>
+        <p style="color:var(--muted);margin-bottom:1.5rem;">Log in to post reviews and share your food experience.</p>
 
         <?php if (!empty($errors['_'])): ?>
             <div class="flash flash-error"><?= e($errors['_']) ?></div>

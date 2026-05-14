@@ -1,6 +1,7 @@
 <footer>
-    <p>Foodly &copy; <?= date('Y') ?> &mdash; Web Technologies Project 07</p>
-    <p style="margin-top:0.4rem;font-size:0.9rem;opacity:0.7;">A blog for foodies, by foodies.</p>
+    <p class="brand-footer">Foodly<span class="dot">.</span></p>
+    <p style="letter-spacing:2px;text-transform:uppercase;font-size:0.78rem;">A blog for foodies, by foodies</p>
+    <p style="margin-top:1.4rem;font-size:0.82rem;opacity:0.55;">&copy; <?= date('Y') ?> Foodly &mdash; Web Technologies Project 07</p>
 </footer>
 <script src="/public/js/main.js"></script>
 </body>

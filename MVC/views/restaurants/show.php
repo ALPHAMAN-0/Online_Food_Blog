@@ -1,25 +1,43 @@
+<?php
+// pick a hero image from the first menu item, fallback to a generic interior shot
+$hero_img = 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80';
+foreach ($items as $it) {
+    if (!empty($it['image_path'])) { $hero_img = $it['image_path']; break; }
+}
+?>
 <div class="container">
-    <div class="rest-header">
-        <h1><?= e($restaurant['name']) ?></h1>
-        <p class="rest-location"><?= e($restaurant['location']) ?> &middot; <?= e($restaurant['area']) ?></p>
+    <div class="rest-hero" style="background-image: linear-gradient(rgba(20,18,15,0.55), rgba(20,18,15,0.75)), url('<?= e($hero_img) ?>'); background-size: cover; background-position: center;">
+        <div class="rest-hero-inner">
+            <span class="eyebrow" style="color:var(--gold-light);">Restaurant</span>
+            <h1><?= e($restaurant['name']) ?></h1>
+            <p class="rest-location"><?= e($restaurant['location']) ?> &middot; <?= e($restaurant['area']) ?></p>
+        </div>
+    </div>
+
+    <?php if (!empty($restaurant['short_background']) || !empty($restaurant['goals'])): ?>
+    <div class="rest-info-grid">
         <?php if (!empty($restaurant['short_background'])): ?>
-            <div class="rest-section">
+            <div>
                 <h3>Background</h3>
                 <p><?= nl2br(e($restaurant['short_background'])) ?></p>
             </div>
         <?php endif; ?>
         <?php if (!empty($restaurant['goals'])): ?>
-            <div class="rest-section">
-                <h3>Our goals</h3>
+            <div>
+                <h3>What we stand for</h3>
                 <p><?= nl2br(e($restaurant['goals'])) ?></p>
             </div>
         <?php endif; ?>
     </div>
+    <?php endif; ?>
 
     <div class="page-head">
-        <h2>Menu items</h2>
+        <div>
+            <span class="eyebrow">The menu</span>
+            <h2>Featured dishes</h2>
+        </div>
         <?php if (is_admin()): ?>
-            <a href="/admin/menu/new/<?= (int)$restaurant['id'] ?>" class="btn btn-small">Add menu item</a>
+            <a href="/admin/menu/new/<?= (int)$restaurant['id'] ?>" class="btn btn-small">+ Add dish</a>
         <?php endif; ?>
     </div>
 
@@ -29,11 +47,13 @@
         <?php else: ?>
             <?php foreach ($items as $it): ?>
                 <a class="card" href="/menu/<?= (int)$it['id'] ?>">
-                    <?php if (!empty($it['image_path'])): ?>
-                        <img class="card-img" src="<?= e($it['image_path']) ?>" alt="<?= e($it['name']) ?>">
-                    <?php else: ?>
-                        <div class="card-img-fallback"><?= e(strtoupper(substr($it['name'], 0, 1))) ?></div>
-                    <?php endif; ?>
+                    <div class="card-img-wrap">
+                        <?php if (!empty($it['image_path'])): ?>
+                            <img class="card-img" src="<?= e($it['image_path']) ?>" alt="<?= e($it['name']) ?>">
+                        <?php else: ?>
+                            <div class="card-img-fallback"><?= e(strtoupper(substr($it['name'], 0, 1))) ?></div>
+                        <?php endif; ?>
+                    </div>
                     <div class="card-body">
                         <h3 class="card-title"><?= e($it['name']) ?></h3>
                         <p class="card-meta"><?= e(mb_strimwidth($it['description'] ?? '', 0, 80, '...')) ?></p>

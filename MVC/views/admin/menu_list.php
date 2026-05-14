@@ -1,7 +1,7 @@
 <div class="page-head">
     <div>
         <h1>Menu items</h1>
-        <p style="color:var(--cocoa-light);">for <strong><?= e($restaurant['name']) ?></strong></p>
+        <p style="color:var(--muted);">for <strong><?= e($restaurant['name']) ?></strong></p>
     </div>
     <div>
         <a class="btn" href="/admin/menu/new/<?= (int)$restaurant['id'] ?>">+ Add item</a>
@@ -23,7 +23,7 @@
                 <?php if (!empty($it['image_path'])): ?>
                     <img src="<?= e($it['image_path']) ?>" alt="" style="width:60px;height:60px;object-fit:cover;border-radius:8px;">
                 <?php else: ?>
-                    <div style="width:60px;height:60px;background:var(--cream-dark);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--paprika);font-weight:700;">?</div>
+                    <div style="width:60px;height:60px;background:var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--gold-dark);font-weight:700;">?</div>
                 <?php endif; ?>
             </td>
             <td><?= e($it['name']) ?></td>

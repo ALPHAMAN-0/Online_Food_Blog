@@ -1,6 +1,6 @@
 <div class="page-head">
     <h1>Members</h1>
-    <p style="color:var(--cocoa-light);">All registered members. Deleting also removes their reviews, posts and comments.</p>
+    <p style="color:var(--muted);">All registered members. Deleting also removes their reviews, posts and comments.</p>
 </div>
 
 <?php if (empty($members)): ?>

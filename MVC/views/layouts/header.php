@@ -10,14 +10,14 @@ $title = isset($page_title) ? $page_title . ' - Foodly' : 'Foodly - Online Food 
     <title><?= e($title) ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
 
 <nav class="navbar">
     <div class="nav-inner">
-        <a class="brand" href="/">Foodly<span>.</span></a>
+        <a class="brand" href="/">Foodly<span class="dot">.</span></a>
         <ul class="nav-links">
             <li><a href="/restaurants">Restaurants</a></li>
             <li><a href="/food-experience">Food Experience</a></li>
@@ -29,7 +29,7 @@ $title = isset($page_title) ? $page_title . ' - Foodly' : 'Foodly - Online Food 
                 <li><a href="/logout">Logout</a></li>
             <?php else: ?>
                 <li><a href="/login">Login</a></li>
-                <li><a href="/register" class="btn btn-small">Register</a></li>
+                <li><a href="/register" class="btn btn-small">Join</a></li>
             <?php endif; ?>
         </ul>
     </div>
@@ -40,7 +40,7 @@ $err = flash('flash_error');
 $ok  = flash('flash_success');
 ?>
 <?php if ($err || $ok): ?>
-<div class="container" style="padding-bottom:0;">
+<div class="container" style="padding-top:1.5rem;padding-bottom:0;">
     <?php if ($err): ?><div class="flash flash-error"><?= e($err) ?></div><?php endif; ?>
     <?php if ($ok): ?><div class="flash flash-success"><?= e($ok) ?></div><?php endif; ?>
 </div>

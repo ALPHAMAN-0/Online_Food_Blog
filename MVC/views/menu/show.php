@@ -1,16 +1,18 @@
 <div class="container">
-    <p style="margin-bottom:1rem;">
-        <a href="/restaurants/<?= (int)$item['restaurant_id'] ?>">&larr; Back to <?= e($item['restaurant_name']) ?></a>
+    <p style="margin-bottom:1.5rem;">
+        <a href="/restaurants/<?= (int)$item['restaurant_id'] ?>" style="font-size:0.85rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);">&larr; Back to <?= e($item['restaurant_name']) ?></a>
     </p>
 
     <div class="menu-detail">
         <?php if (!empty($item['image_path'])): ?>
             <img class="menu-detail-img" src="<?= e($item['image_path']) ?>" alt="<?= e($item['name']) ?>">
+        <?php else: ?>
+            <div class="menu-detail-img-fallback"><?= e(strtoupper(substr($item['name'], 0, 1))) ?></div>
         <?php endif; ?>
         <div class="menu-detail-body">
-            <span class="price-tag">৳ <?= number_format($item['price'], 2) ?></span>
+            <span class="eyebrow">From <?= e($item['restaurant_name']) ?> &middot; <?= e($item['location']) ?></span>
             <h1><?= e($item['name']) ?></h1>
-            <p style="color:var(--cocoa-light);margin-bottom:1rem;">From <strong><?= e($item['restaurant_name']) ?></strong> &middot; <?= e($item['location']) ?></p>
+            <span class="price-tag">৳ <?= number_format($item['price'], 2) ?></span>
             <?php if (!empty($item['description'])): ?>
                 <p><?= nl2br(e($item['description'])) ?></p>
             <?php endif; ?>
@@ -30,7 +32,7 @@
                 <span class="field-error" id="review-error" style="display:none;"></span>
             </form>
         <?php elseif (!is_logged_in()): ?>
-            <p style="color:var(--cocoa-light);margin-bottom:1.5rem;">
+            <p style="color:var(--muted);margin-bottom:1.5rem;font-size:0.95rem;">
                 <a href="/login">Log in</a> as a member to post a review.
             </p>
         <?php endif; ?>

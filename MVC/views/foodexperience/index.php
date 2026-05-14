@@ -1,11 +1,12 @@
 <div class="container">
     <div class="page-head">
         <div>
+            <span class="eyebrow">The journal</span>
             <h1>Food Experience</h1>
-            <p style="color:var(--cocoa-light);">Descriptive reviews and stories from members and admins.</p>
+            <p style="color:var(--muted);">Descriptive reviews and stories from members and admins.</p>
         </div>
         <?php if (is_member() || is_admin()): ?>
-            <a class="btn" href="/food-experience/new">+ Share your experience</a>
+            <a class="btn" href="/food-experience/new">Share your experience</a>
         <?php elseif (!is_logged_in()): ?>
             <a class="btn btn-ghost" href="/login">Log in to post</a>
         <?php endif; ?>
@@ -21,17 +22,14 @@
                     <span class="fe-type-pill"><?= e($p['post_type']) ?></span>
                 </h2>
                 <div class="fe-meta">
-                    by <strong><?= e($p['author']) ?></strong>
-                    &middot; <?= nice_date($p['created_at']) ?>
+                    By <strong><?= e($p['author']) ?></strong>
+                    &nbsp;&middot;&nbsp; <?= nice_date($p['created_at']) ?>
                     <?php if (!empty($p['restaurant_name'])): ?>
-                        &middot; about <?= e($p['restaurant_name']) ?>
-                    <?php endif; ?>
-                    <?php if (!empty($p['menu_item_name'])): ?>
-                        &middot; <?= e($p['menu_item_name']) ?>
+                        &nbsp;&middot;&nbsp; <?= e($p['restaurant_name']) ?>
                     <?php endif; ?>
                 </div>
                 <div class="fe-content">
-                    <?= nl2br(e(mb_strimwidth($p['content'], 0, 280, '...'))) ?>
+                    <?= nl2br(e(mb_strimwidth($p['content'], 0, 320, '...'))) ?>
                 </div>
                 <div class="fe-actions">
                     <a class="btn btn-small" href="/food-experience/<?= (int)$p['id'] ?>">Read more</a>

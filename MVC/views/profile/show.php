@@ -9,8 +9,8 @@
             <div class="profile-info">
                 <h2><?= e($user['name']) ?></h2>
                 <span class="role"><?= e($user['role']) ?></span>
-                <p style="color:var(--cocoa-light);margin-top:0.4rem;"><?= e($user['email']) ?></p>
-                <p style="color:var(--gray);font-size:0.85rem;">Joined <?= nice_date($user['created_at']) ?></p>
+                <p style="color:var(--muted);margin-top:0.4rem;"><?= e($user['email']) ?></p>
+                <p style="color:var(--muted);font-size:0.85rem;">Joined <?= nice_date($user['created_at']) ?></p>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <h1><?= $editing ? 'Edit menu item' : 'New menu item' ?></h1>
-<p style="color:var(--cocoa-light);">for <strong><?= e($restaurant['name']) ?></strong></p>
+<p style="color:var(--muted);">for <strong><?= e($restaurant['name']) ?></strong></p>
 
 <div class="form-card" style="max-width:680px;margin-top:1rem;">
     <form method="post" enctype="multipart/form-data" data-validate novalidate>
@@ -22,7 +22,7 @@
             <input type="file" name="image" id="image" accept="image/jpeg,image/png">
             <?php if (!empty($errors['image'])): ?><span class="field-error"><?= e($errors['image']) ?></span><?php endif; ?>
             <?php if ($editing && !empty($data['image_path'])): ?>
-                <p style="margin-top:0.5rem;color:var(--cocoa-light);font-size:0.9rem;">Current:</p>
+                <p style="margin-top:0.5rem;color:var(--muted);font-size:0.9rem;">Current:</p>
                 <img src="<?= e($data['image_path']) ?>" style="max-width:120px;border-radius:8px;margin-top:0.4rem;">
             <?php endif; ?>
         </div>

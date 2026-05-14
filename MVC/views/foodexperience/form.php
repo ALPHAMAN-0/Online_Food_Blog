@@ -2,7 +2,7 @@
 <div class="container narrow">
     <div class="form-card">
         <h1><?= $editing ? 'Edit your post' : 'Share your food experience' ?></h1>
-        <p style="color:var(--cocoa-light);margin-bottom:1.5rem;">Tell people what you ate, where, and how it made you feel.</p>
+        <p style="color:var(--muted);margin-bottom:1.5rem;">Tell people what you ate, where, and how it made you feel.</p>
 
         <form method="post" data-validate novalidate>
             <div class="form-group">

@@ -1,7 +1,7 @@
 <div class="container narrow">
     <div class="form-card">
         <h1>Join Foodly</h1>
-        <p style="color:var(--cocoa-light);margin-bottom:1.5rem;">Create an account to share your reviews and food experiences.</p>
+        <p style="color:var(--muted);margin-bottom:1.5rem;">Create an account to share your reviews and food experiences.</p>
 
         <form method="post" action="/register" data-validate novalidate>
             <div class="form-group">
