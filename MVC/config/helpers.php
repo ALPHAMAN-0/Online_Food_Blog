@@ -1,6 +1,32 @@
 <?php
 // small helpers used across the app
 
+// base url - auto-detected from the script location so the app works whether
+// it's served at the document root (http://host/) or in a subfolder
+// (http://host/Online_Food_Blog/MVC/)
+if (!defined('BASE_URL')) {
+    $base = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? ''));
+    define('BASE_URL', rtrim($base === '/' ? '' : $base, '/'));
+}
+
+// build a url to an app route, e.g. url('restaurants/5') -> /Online_Food_Blog/MVC/restaurants/5
+function url($path = '') {
+    return BASE_URL . '/' . ltrim($path, '/');
+}
+
+// build a url to a static asset under public/, e.g. asset('css/style.css')
+function asset($path) {
+    return BASE_URL . '/public/' . ltrim($path, '/');
+}
+
+// turn a stored upload path (which may start with / or public/) into a browser-safe url
+function upload_url($stored) {
+    if (!$stored) return '';
+    // already absolute http(s) url - leave it
+    if (preg_match('#^https?://#i', $stored)) return $stored;
+    return BASE_URL . '/' . ltrim($stored, '/');
+}
+
 // escape for html output
 function e($s) {
     return htmlspecialchars($s ?? '', ENT_QUOTES, 'UTF-8');
@@ -17,6 +43,10 @@ function flash($key, $val = null) {
 }
 
 function redirect($url) {
+    // prefix BASE_URL for app-relative paths so callers can keep passing "/login" etc.
+    if (isset($url[0]) && $url[0] === '/' && substr($url, 0, 2) !== '//') {
+        $url = BASE_URL . $url;
+    }
     header("Location: $url");
     exit;
 }

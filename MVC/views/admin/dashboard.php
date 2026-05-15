@@ -21,7 +21,7 @@
 </div>
 
 <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-    <a class="btn" href="/admin/restaurants">Manage restaurants</a>
-    <a class="btn btn-ghost" href="/admin/members">Manage members</a>
-    <a class="btn btn-ghost" href="/admin/restaurants/new">+ New restaurant</a>
+    <a class="btn" href="<?= url('admin/restaurants') ?>">Manage restaurants</a>
+    <a class="btn btn-ghost" href="<?= url('admin/members') ?>">Manage members</a>
+    <a class="btn btn-ghost" href="<?= url('admin/restaurants/new') ?>">+ New restaurant</a>
 </div>

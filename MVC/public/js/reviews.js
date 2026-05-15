@@ -1,6 +1,7 @@
 // AJAX add + delete reviews on menu item detail page
 
 (function () {
+    var BASE = window.BASE_URL || '';
     var section = document.getElementById('reviews-section');
     if (!section) return;
     var menuId = section.dataset.menuId;
@@ -52,7 +53,7 @@
             var fd = new FormData();
             fd.append('menu_item_id', menuId);
             fd.append('comment', txt);
-            fetch('/api/reviews/add', { method: 'POST', body: fd })
+            fetch(BASE + '/api/reviews/add', { method: 'POST', body: fd })
                 .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
                 .then(function (resp) {
                     if (!resp.ok || !resp.data.ok) {
@@ -81,7 +82,7 @@
             var id = li.dataset.reviewId;
             if (t.classList.contains('del-review')) {
                 if (!confirm('Delete your review?')) return;
-                fetch('/api/reviews/' + id, { method: 'DELETE' })
+                fetch(BASE + '/api/reviews/' + id, { method: 'DELETE' })
                     .then(function (r) { return r.json(); })
                     .then(function (d) {
                         if (d.ok) li.remove();
@@ -89,7 +90,7 @@
                     });
             } else if (t.classList.contains('del-review-admin')) {
                 if (!confirm('Delete this review (admin)?')) return;
-                fetch('/api/admin/reviews/' + id, { method: 'DELETE' })
+                fetch(BASE + '/api/admin/reviews/' + id, { method: 'DELETE' })
                     .then(function (r) { return r.json(); })
                     .then(function (d) {
                         if (d.ok) li.remove();

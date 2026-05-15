@@ -2,7 +2,7 @@
     <div class="profile-card">
         <div class="profile-top">
             <?php if (!empty($user['profile_picture'])): ?>
-                <img class="profile-pic" src="<?= e($user['profile_picture']) ?>" alt="profile">
+                <img class="profile-pic" src="<?= e(upload_url($user['profile_picture'])) ?>" alt="profile">
             <?php else: ?>
                 <div class="profile-pic-fallback"><?= e(strtoupper(substr($user['name'], 0, 1))) ?></div>
             <?php endif; ?>
@@ -17,7 +17,7 @@
 
     <div class="profile-card">
         <h2>Edit profile</h2>
-        <form method="post" action="/profile/update" enctype="multipart/form-data" data-validate novalidate>
+        <form method="post" action="<?= url('profile/update') ?>" enctype="multipart/form-data" data-validate novalidate>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" required value="<?= e($user['name']) ?>">
@@ -36,7 +36,7 @@
 
     <div class="profile-card">
         <h2>Change password</h2>
-        <form method="post" action="/profile/password" data-validate novalidate>
+        <form method="post" action="<?= url('profile/password') ?>" data-validate novalidate>
             <div class="form-group">
                 <label for="current">Current password</label>
                 <input type="password" name="current" id="current" required>

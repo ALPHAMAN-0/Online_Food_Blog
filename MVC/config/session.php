@@ -38,8 +38,7 @@ function current_user_id() {
 function require_login() {
     if (!is_logged_in()) {
         $_SESSION['flash_error'] = 'Please log in first.';
-        header('Location: /login');
-        exit;
+        redirect('/login');
     }
 }
 

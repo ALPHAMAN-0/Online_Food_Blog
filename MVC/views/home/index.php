@@ -5,11 +5,11 @@
         <p>A curated journal of restaurants, dishes and the people who love them. Browse, review, and share food worth remembering.</p>
         <div>
             <?php if (!is_logged_in()): ?>
-                <a class="btn" href="/register">Become a member</a>
-                <a class="btn btn-ghost" style="margin-left:0.6rem;" href="/restaurants">Browse restaurants</a>
+                <a class="btn" href="<?= url('register') ?>">Become a member</a>
+                <a class="btn btn-ghost" style="margin-left:0.6rem;" href="<?= url('restaurants') ?>">Browse restaurants</a>
             <?php else: ?>
-                <a class="btn" href="/restaurants">Browse restaurants</a>
-                <a class="btn btn-ghost" style="margin-left:0.6rem;" href="/food-experience">Food Experience</a>
+                <a class="btn" href="<?= url('restaurants') ?>">Browse restaurants</a>
+                <a class="btn btn-ghost" style="margin-left:0.6rem;" href="<?= url('food-experience') ?>">Food Experience</a>
             <?php endif; ?>
         </div>
     </div>
@@ -20,10 +20,10 @@
     <span class="eyebrow">A taste of what's inside</span>
     <h2 style="margin-bottom:1.4rem;">Featured dishes</h2>
     <div class="gallery-row">
-        <a href="/restaurants"><img src="https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=700&q=80" alt="Beef bhuna"></a>
-        <a href="/restaurants"><img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=700&q=80" alt="Prawn curry"></a>
-        <a href="/restaurants"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=700&q=80" alt="Kebab"></a>
-        <a href="/restaurants"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80" alt="Sticky rice"></a>
+        <a href="<?= url('restaurants') ?>"><img src="https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=700&q=80" alt="Beef bhuna"></a>
+        <a href="<?= url('restaurants') ?>"><img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=700&q=80" alt="Prawn curry"></a>
+        <a href="<?= url('restaurants') ?>"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=700&q=80" alt="Kebab"></a>
+        <a href="<?= url('restaurants') ?>"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80" alt="Sticky rice"></a>
     </div>
 
     <hr class="divider">
@@ -49,7 +49,7 @@
             <span class="eyebrow">Editor's picks</span>
             <h2 id="results-title">Featured restaurants</h2>
         </div>
-        <a href="/restaurants">View all &rarr;</a>
+        <a href="<?= url('restaurants') ?>">View all &rarr;</a>
     </div>
 
     <div class="cards" id="hp-results">
@@ -57,7 +57,7 @@
             <p class="no-items">No restaurants yet. Check back soon!</p>
         <?php else: ?>
             <?php foreach ($featured as $r): ?>
-                <a class="card" href="/restaurants/<?= (int)$r['id'] ?>">
+                <a class="card" href="<?= url('restaurants/' . (int)$r['id']) ?>">
                     <div class="card-img-wrap">
                         <div class="card-img-fallback"><?= e(strtoupper(substr($r['name'], 0, 1))) ?></div>
                     </div>
@@ -73,4 +73,4 @@
     <div id="hp-results-items" class="cards" style="margin-top:2rem;"></div>
 </div>
 
-<script src="/public/js/search.js"></script>
+<script src="<?= asset('js/search.js') ?>"></script>

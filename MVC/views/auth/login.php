@@ -7,7 +7,7 @@
             <div class="flash flash-error"><?= e($errors['_']) ?></div>
         <?php endif; ?>
 
-        <form method="post" action="/login" data-validate novalidate>
+        <form method="post" action="<?= url('login') ?>" data-validate novalidate>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" required value="<?= e($old['email']) ?>">
@@ -26,7 +26,7 @@
             </div>
 
             <button class="btn" type="submit">Log in</button>
-            <p style="margin-top:1rem;font-size:0.95rem;">Need an account? <a href="/register">Register</a></p>
+            <p style="margin-top:1rem;font-size:0.95rem;">Need an account? <a href="<?= url('register') ?>">Register</a></p>
         </form>
     </div>
 </div>

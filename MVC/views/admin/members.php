@@ -15,7 +15,7 @@
         <tr>
             <td>
                 <?php if (!empty($u['profile_picture'])): ?>
-                    <img src="<?= e($u['profile_picture']) ?>" style="width:44px;height:44px;border-radius:50%;object-fit:cover;">
+                    <img src="<?= e(upload_url($u['profile_picture'])) ?>" style="width:44px;height:44px;border-radius:50%;object-fit:cover;">
                 <?php else: ?>
                     <div class="avatar" style="background:<?= e(color_from_name($u['name'])) ?>"><?= e(strtoupper(substr($u['name'], 0, 1))) ?></div>
                 <?php endif; ?>
@@ -24,7 +24,7 @@
             <td><?= e($u['email']) ?></td>
             <td><?= nice_date($u['created_at']) ?></td>
             <td class="row-actions">
-                <a class="btn btn-small btn-danger" href="/admin/members/delete/<?= (int)$u['id'] ?>" data-confirm="Delete this member? Their reviews and posts will also be removed.">Delete</a>
+                <a class="btn btn-small btn-danger" href="<?= url('admin/members/delete/' . (int)$u['id']) ?>" data-confirm="Delete this member? Their reviews and posts will also be removed.">Delete</a>
             </td>
         </tr>
     <?php endforeach; ?>

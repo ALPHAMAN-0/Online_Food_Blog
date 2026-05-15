@@ -1,9 +1,9 @@
 <?php
 // front controller - routes everything
 
+require_once __DIR__ . '/config/helpers.php';
 require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/config/session.php';
-require_once __DIR__ . '/config/helpers.php';
 
 $route = $_GET['route'] ?? 'home';
 $route = trim($route, '/');
@@ -164,6 +164,6 @@ else {
     http_response_code(404);
     $page_title = '404 Not Found';
     require __DIR__ . '/views/layouts/header.php';
-    echo '<div class="container"><h1>Page not found</h1><p>Sorry, that page does not exist.</p><a class="btn" href="/">Back home</a></div>';
+    echo '<div class="container"><h1>Page not found</h1><p>Sorry, that page does not exist.</p><a class="btn" href="' . url() . '">Back home</a></div>';
     require __DIR__ . '/views/layouts/footer.php';
 }

@@ -1,6 +1,7 @@
 // AJAX for food experience comments
 
 (function () {
+    var BASE = window.BASE_URL || '';
     var section = document.getElementById('comments-section');
     if (!section) return;
     var postId = section.dataset.postId;
@@ -47,7 +48,7 @@
             var fd = new FormData();
             fd.append('post_id', postId);
             fd.append('comment', txt);
-            fetch('/api/food-exp/comments/add', { method: 'POST', body: fd })
+            fetch(BASE + '/api/food-exp/comments/add', { method: 'POST', body: fd })
                 .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
                 .then(function (resp) {
                     if (!resp.ok || !resp.data.ok) {
@@ -70,7 +71,7 @@
             var id = li.dataset.commentId;
             if (t.classList.contains('del-comment')) {
                 if (!confirm('Delete your comment?')) return;
-                fetch('/api/food-exp/comments/' + id, { method: 'DELETE' })
+                fetch(BASE + '/api/food-exp/comments/' + id, { method: 'DELETE' })
                     .then(function (r) { return r.json(); })
                     .then(function (d) {
                         if (d.ok) li.remove();
@@ -78,7 +79,7 @@
                     });
             } else if (t.classList.contains('del-comment-admin')) {
                 if (!confirm('Delete this comment (admin)?')) return;
-                fetch('/api/admin/comments/' + id, { method: 'DELETE' })
+                fetch(BASE + '/api/admin/comments/' + id, { method: 'DELETE' })
                     .then(function (r) { return r.json(); })
                     .then(function (d) {
                         if (d.ok) li.remove();

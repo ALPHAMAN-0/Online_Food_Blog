@@ -26,6 +26,6 @@
             <textarea name="goals" id="goals"><?= e($data['goals']) ?></textarea>
         </div>
         <button class="btn" type="submit"><?= $editing ? 'Save changes' : 'Create restaurant' ?></button>
-        <a class="btn btn-ghost" href="/admin/restaurants">Cancel</a>
+        <a class="btn btn-ghost" href="<?= url('admin/restaurants') ?>">Cancel</a>
     </form>
 </div>

@@ -4,8 +4,8 @@
         <p style="color:var(--muted);">for <strong><?= e($restaurant['name']) ?></strong></p>
     </div>
     <div>
-        <a class="btn" href="/admin/menu/new/<?= (int)$restaurant['id'] ?>">+ Add item</a>
-        <a class="btn btn-ghost" href="/admin/restaurants">&larr; Restaurants</a>
+        <a class="btn" href="<?= url('admin/menu/new/' . (int)$restaurant['id']) ?>">+ Add item</a>
+        <a class="btn btn-ghost" href="<?= url('admin/restaurants') ?>">&larr; Restaurants</a>
     </div>
 </div>
 
@@ -21,7 +21,7 @@
         <tr>
             <td>
                 <?php if (!empty($it['image_path'])): ?>
-                    <img src="<?= e($it['image_path']) ?>" alt="" style="width:60px;height:60px;object-fit:cover;border-radius:8px;">
+                    <img src="<?= e(upload_url($it['image_path'])) ?>" alt="" style="width:60px;height:60px;object-fit:cover;border-radius:8px;">
                 <?php else: ?>
                     <div style="width:60px;height:60px;background:var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--gold-dark);font-weight:700;">?</div>
                 <?php endif; ?>
@@ -30,9 +30,9 @@
             <td>৳ <?= number_format($it['price'], 2) ?></td>
             <td><?= nice_date($it['created_at']) ?></td>
             <td class="row-actions">
-                <a class="btn btn-small btn-ghost" href="/menu/<?= (int)$it['id'] ?>">View</a>
-                <a class="btn btn-small btn-ghost" href="/admin/menu/edit/<?= (int)$it['id'] ?>">Edit</a>
-                <a class="btn btn-small btn-danger" href="/admin/menu/delete/<?= (int)$it['id'] ?>" data-confirm="Delete this menu item?">Delete</a>
+                <a class="btn btn-small btn-ghost" href="<?= url('menu/' . (int)$it['id']) ?>">View</a>
+                <a class="btn btn-small btn-ghost" href="<?= url('admin/menu/edit/' . (int)$it['id']) ?>">Edit</a>
+                <a class="btn btn-small btn-danger" href="<?= url('admin/menu/delete/' . (int)$it['id']) ?>" data-confirm="Delete this menu item?">Delete</a>
             </td>
         </tr>
     <?php endforeach; ?>

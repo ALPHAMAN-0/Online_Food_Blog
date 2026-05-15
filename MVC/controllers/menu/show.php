@@ -11,7 +11,7 @@ if (!$item) {
     http_response_code(404);
     $page_title = 'Not found';
     require __DIR__ . '/../../views/layouts/header.php';
-    echo '<div class="container"><h1>Item not found</h1><a class="btn" href="/restaurants">Back</a></div>';
+    echo '<div class="container"><h1>Item not found</h1><a class="btn" href="' . url('restaurants') . '">Back</a></div>';
     require __DIR__ . '/../../views/layouts/footer.php';
     return;
 }

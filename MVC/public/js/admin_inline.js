@@ -1,12 +1,13 @@
 // admin inline delete for food experience posts (from list / detail pages)
 
 (function () {
+    var BASE = window.BASE_URL || '';
     document.querySelectorAll('[data-fe-admin-delete]').forEach(function (btn) {
         btn.addEventListener('click', function () {
             var id = btn.getAttribute('data-fe-admin-delete');
             var redirect = btn.getAttribute('data-redirect');
             if (!confirm('Delete this post (admin)? This will remove its comments too.')) return;
-            fetch('/api/admin/posts/' + id, { method: 'DELETE' })
+            fetch(BASE + '/api/admin/posts/' + id, { method: 'DELETE' })
                 .then(function (r) { return r.json(); })
                 .then(function (d) {
                     if (!d.ok) { alert(d.error || 'Failed.'); return; }

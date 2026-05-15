@@ -42,7 +42,7 @@
                 <?php if (!empty($errors['content'])): ?><span class="field-error"><?= e($errors['content']) ?></span><?php endif; ?>
             </div>
             <button class="btn" type="submit"><?= $editing ? 'Save changes' : 'Publish' ?></button>
-            <a class="btn btn-ghost" href="/food-experience">Cancel</a>
+            <a class="btn btn-ghost" href="<?= url('food-experience') ?>">Cancel</a>
         </form>
     </div>
 </div>

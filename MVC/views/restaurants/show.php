@@ -2,7 +2,7 @@
 // pick a hero image from the first menu item, fallback to a generic interior shot
 $hero_img = 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80';
 foreach ($items as $it) {
-    if (!empty($it['image_path'])) { $hero_img = $it['image_path']; break; }
+    if (!empty($it['image_path'])) { $hero_img = upload_url($it['image_path']); break; }
 }
 ?>
 <div class="container">
@@ -37,7 +37,7 @@ foreach ($items as $it) {
             <h2>Featured dishes</h2>
         </div>
         <?php if (is_admin()): ?>
-            <a href="/admin/menu/new/<?= (int)$restaurant['id'] ?>" class="btn btn-small">+ Add dish</a>
+            <a href="<?= url('admin/menu/new/' . (int)$restaurant['id']) ?>" class="btn btn-small">+ Add dish</a>
         <?php endif; ?>
     </div>
 
@@ -46,10 +46,10 @@ foreach ($items as $it) {
             <p class="no-items">No menu items yet.</p>
         <?php else: ?>
             <?php foreach ($items as $it): ?>
-                <a class="card" href="/menu/<?= (int)$it['id'] ?>">
+                <a class="card" href="<?= url('menu/' . (int)$it['id']) ?>">
                     <div class="card-img-wrap">
                         <?php if (!empty($it['image_path'])): ?>
-                            <img class="card-img" src="<?= e($it['image_path']) ?>" alt="<?= e($it['name']) ?>">
+                            <img class="card-img" src="<?= e(upload_url($it['image_path'])) ?>" alt="<?= e($it['name']) ?>">
                         <?php else: ?>
                             <div class="card-img-fallback"><?= e(strtoupper(substr($it['name'], 0, 1))) ?></div>
                         <?php endif; ?>

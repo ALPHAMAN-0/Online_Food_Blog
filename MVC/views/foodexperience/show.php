@@ -1,5 +1,5 @@
 <div class="container">
-    <p style="margin-bottom:1rem;"><a href="/food-experience">&larr; All experiences</a></p>
+    <p style="margin-bottom:1rem;"><a href="<?= url('food-experience') ?>">&larr; All experiences</a></p>
 
     <article class="fe-post-card" style="padding:2.4rem;">
         <h1 style="font-size:2.2rem;"><?= e($post['title']) ?> <span class="fe-type-pill"><?= e($post['post_type']) ?></span></h1>
@@ -22,10 +22,10 @@
 
         <div class="fe-actions" style="margin-top:2rem;">
             <?php if (is_logged_in() && $post['user_id'] == current_user_id()): ?>
-                <a class="btn btn-small btn-ghost" href="/food-experience/edit/<?= (int)$post['id'] ?>">Edit</a>
-                <a class="btn btn-small btn-danger" href="/food-experience/delete/<?= (int)$post['id'] ?>" data-confirm="Delete this post?">Delete</a>
+                <a class="btn btn-small btn-ghost" href="<?= url('food-experience/edit/' . (int)$post['id']) ?>">Edit</a>
+                <a class="btn btn-small btn-danger" href="<?= url('food-experience/delete/' . (int)$post['id']) ?>" data-confirm="Delete this post?">Delete</a>
             <?php elseif (is_admin()): ?>
-                <button class="btn btn-small btn-danger" type="button" data-fe-admin-delete="<?= (int)$post['id'] ?>" data-redirect="/food-experience">Delete (admin)</button>
+                <button class="btn btn-small btn-danger" type="button" data-fe-admin-delete="<?= (int)$post['id'] ?>" data-redirect="<?= url('food-experience') ?>">Delete (admin)</button>
             <?php endif; ?>
         </div>
     </article>
@@ -43,7 +43,7 @@
                 <span class="field-error" id="comment-error" style="display:none;"></span>
             </form>
         <?php else: ?>
-            <p style="color:var(--muted);"><a href="/login">Log in</a> to comment.</p>
+            <p style="color:var(--muted);"><a href="<?= url('login') ?>">Log in</a> to comment.</p>
         <?php endif; ?>
 
         <ul class="comment-list review-list" id="comment-list">
@@ -77,5 +77,5 @@
 <script>
 window.CURRENT_USER = <?= is_logged_in() ? json_encode(['id'=>current_user_id(),'name'=>$_SESSION['name'],'role'=>$_SESSION['role']]) : 'null' ?>;
 </script>
-<script src="/public/js/foodexp.js"></script>
-<script src="/public/js/admin_inline.js"></script>
+<script src="<?= asset('js/foodexp.js') ?>"></script>
+<script src="<?= asset('js/admin_inline.js') ?>"></script>

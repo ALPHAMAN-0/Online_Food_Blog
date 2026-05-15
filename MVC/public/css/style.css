@@ -338,22 +338,22 @@ button.btn-ghost:hover {
 }
 .hero .btn {
     background: var(--white);
-    color: var(--espresso);
+    color: var(--espresso) !important;
     border-color: var(--white);
 }
 .hero .btn:hover {
     background: var(--gold);
     border-color: var(--gold);
-    color: var(--white);
+    color: var(--white) !important;
 }
 .hero .btn-ghost {
     background: transparent;
-    color: var(--white);
+    color: var(--white) !important;
     border-color: var(--white);
 }
 .hero .btn-ghost:hover {
     background: var(--white);
-    color: var(--espresso);
+    color: var(--espresso) !important;
 }
 
 /* ------ search bar ------ */

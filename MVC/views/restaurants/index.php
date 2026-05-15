@@ -27,7 +27,7 @@
             <p class="no-items">No restaurants match your search.</p>
         <?php else: ?>
             <?php foreach ($restaurants as $r): ?>
-                <a class="card" href="/restaurants/<?= (int)$r['id'] ?>">
+                <a class="card" href="<?= url('restaurants/' . (int)$r['id']) ?>">
                     <div class="card-img-wrap">
                         <div class="card-img-fallback"><?= e(strtoupper(substr($r['name'], 0, 1))) ?></div>
                     </div>
@@ -48,4 +48,4 @@
     <div id="hp-results-items" class="cards" style="margin-top:2rem;"></div>
 </div>
 
-<script src="/public/js/search.js"></script>
+<script src="<?= asset('js/search.js') ?>"></script>

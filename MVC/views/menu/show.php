@@ -1,11 +1,11 @@
 <div class="container">
     <p style="margin-bottom:1.5rem;">
-        <a href="/restaurants/<?= (int)$item['restaurant_id'] ?>" style="font-size:0.85rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);">&larr; Back to <?= e($item['restaurant_name']) ?></a>
+        <a href="<?= url('restaurants/' . (int)$item['restaurant_id']) ?>" style="font-size:0.85rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);">&larr; Back to <?= e($item['restaurant_name']) ?></a>
     </p>
 
     <div class="menu-detail">
         <?php if (!empty($item['image_path'])): ?>
-            <img class="menu-detail-img" src="<?= e($item['image_path']) ?>" alt="<?= e($item['name']) ?>">
+            <img class="menu-detail-img" src="<?= e(upload_url($item['image_path'])) ?>" alt="<?= e($item['name']) ?>">
         <?php else: ?>
             <div class="menu-detail-img-fallback"><?= e(strtoupper(substr($item['name'], 0, 1))) ?></div>
         <?php endif; ?>
@@ -33,7 +33,7 @@
             </form>
         <?php elseif (!is_logged_in()): ?>
             <p style="color:var(--muted);margin-bottom:1.5rem;font-size:0.95rem;">
-                <a href="/login">Log in</a> as a member to post a review.
+                <a href="<?= url('login') ?>">Log in</a> as a member to post a review.
             </p>
         <?php endif; ?>
 
@@ -68,4 +68,4 @@
 <script>
 window.CURRENT_USER = <?= is_logged_in() ? json_encode(['id'=>current_user_id(),'name'=>$_SESSION['name'],'role'=>$_SESSION['role']]) : 'null' ?>;
 </script>
-<script src="/public/js/reviews.js"></script>
+<script src="<?= asset('js/reviews.js') ?>"></script>

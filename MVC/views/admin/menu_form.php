@@ -23,10 +23,10 @@
             <?php if (!empty($errors['image'])): ?><span class="field-error"><?= e($errors['image']) ?></span><?php endif; ?>
             <?php if ($editing && !empty($data['image_path'])): ?>
                 <p style="margin-top:0.5rem;color:var(--muted);font-size:0.9rem;">Current:</p>
-                <img src="<?= e($data['image_path']) ?>" style="max-width:120px;border-radius:8px;margin-top:0.4rem;">
+                <img src="<?= e(upload_url($data['image_path'])) ?>" style="max-width:120px;border-radius:8px;margin-top:0.4rem;">
             <?php endif; ?>
         </div>
         <button class="btn" type="submit"><?= $editing ? 'Save changes' : 'Add item' ?></button>
-        <a class="btn btn-ghost" href="/admin/menu/list/<?= (int)$data['restaurant_id'] ?>">Cancel</a>
+        <a class="btn btn-ghost" href="<?= url('admin/menu/list/' . (int)$data['restaurant_id']) ?>">Cancel</a>
     </form>
 </div>

@@ -1,6 +1,7 @@
 // AJAX search on home + restaurants page
 
 (function () {
+    var BASE = window.BASE_URL || '';
     var q = document.getElementById('hp-q');
     var loc = document.getElementById('hp-loc');
     var ar = document.getElementById('hp-area');
@@ -29,7 +30,7 @@
         }
         list.forEach(function (r) {
             var letter = (r.name || '?').charAt(0).toUpperCase();
-            var html = '<a class="card" href="/restaurants/' + r.id + '">' +
+            var html = '<a class="card" href="' + BASE + '/restaurants/' + r.id + '">' +
                 '<div class="card-img-fallback">' + escapeHtml(letter) + '</div>' +
                 '<div class="card-body">' +
                 '<h3 class="card-title">' + escapeHtml(r.name) + '</h3>' +
@@ -50,10 +51,13 @@
         resultsItems.appendChild(heading);
 
         list.forEach(function (it) {
-            var imgHtml = it.image_path
-                ? '<img class="card-img" src="' + escapeHtml(it.image_path) + '" alt="">'
+            var imgSrc = it.image_path
+                ? (/^https?:\/\//i.test(it.image_path) ? it.image_path : BASE + '/' + String(it.image_path).replace(/^\/+/, ''))
+                : '';
+            var imgHtml = imgSrc
+                ? '<img class="card-img" src="' + escapeHtml(imgSrc) + '" alt="">'
                 : '<div class="card-img-fallback">' + escapeHtml((it.name||'?').charAt(0).toUpperCase()) + '</div>';
-            var html = '<a class="card" href="/menu/' + it.id + '">' +
+            var html = '<a class="card" href="' + BASE + '/menu/' + it.id + '">' +
                 imgHtml +
                 '<div class="card-body">' +
                 '<h3 class="card-title">' + escapeHtml(it.name) + '</h3>' +
@@ -70,7 +74,7 @@
         if (loc.value.trim()) params.set('location', loc.value.trim());
         if (ar.value.trim())  params.set('area', ar.value.trim());
 
-        fetch('/api/search?' + params.toString())
+        fetch(BASE + '/api/search?' + params.toString())
             .then(function (r) {
                 if (!r.ok) throw new Error('Network error');
                 return r.json();

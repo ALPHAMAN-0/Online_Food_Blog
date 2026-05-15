@@ -3,7 +3,7 @@
         <h1>Join Foodly</h1>
         <p style="color:var(--muted);margin-bottom:1.5rem;">Create an account to share your reviews and food experiences.</p>
 
-        <form method="post" action="/register" data-validate novalidate>
+        <form method="post" action="<?= url('register') ?>" data-validate novalidate>
             <div class="form-group">
                 <label for="name">Full name</label>
                 <input type="text" name="name" id="name" required value="<?= e($old['name']) ?>">
@@ -38,7 +38,7 @@
             </div>
 
             <button class="btn" type="submit">Create account</button>
-            <p style="margin-top:1rem;font-size:0.95rem;">Already have an account? <a href="/login">Log in</a></p>
+            <p style="margin-top:1rem;font-size:0.95rem;">Already have an account? <a href="<?= url('login') ?>">Log in</a></p>
         </form>
     </div>
 </div>
