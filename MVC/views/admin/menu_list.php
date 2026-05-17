@@ -14,7 +14,7 @@
 <?php else: ?>
 <table class="data-table">
     <thead>
-        <tr><th>Image</th><th>Name</th><th>Price</th><th>Created</th><th>Actions</th></tr>
+        <tr><th>IMAGE</th><th>NAME</th><th>PRICE</th><th>CREATED</th><th>ACTIONS</th></tr>
     </thead>
     <tbody>
     <?php foreach ($items as $it): ?>
