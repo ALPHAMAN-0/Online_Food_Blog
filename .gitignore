@@ -19,6 +19,11 @@ MVC/public/uploads/profiles/*
 !MVC/public/uploads/profiles/.gitkeep
 
 # ---- Docker ----
+# docker config files kept local only
+Dockerfile
+docker-compose.yml
+docker/
+
 # local docker-compose override (developers customize this locally)
 docker-compose.override.yml
 docker-compose.override.yaml
@@ -33,7 +38,6 @@ docker/data/
 docker/mysql_data/
 mysql_data/
 db_data/
-
 # build artifacts / caches
 *.pid
 .docker/
