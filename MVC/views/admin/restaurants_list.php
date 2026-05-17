@@ -18,9 +18,9 @@
             <td><?= e($r['area']) ?></td>
             <td><?= nice_date($r['created_at']) ?></td>
             <td class="row-actions">
-                <a class="btn btn-small btn-ghost" href="<?= url('admin/menu/list/' . (int)$r['id']) ?>">Menu</a>
-                <a class="btn btn-small btn-ghost" href="<?= url('admin/restaurants/edit/' . (int)$r['id']) ?>">Edit</a>
-                <a class="btn btn-small btn-danger" href="<?= url('admin/restaurants/delete/' . (int)$r['id']) ?>" data-confirm="Delete this restaurant and all its menu items?">Delete</a>
+                <a class="btn btn-small btn-ghost" href="<?= url('admin/menu/list/' . (int)$r['id']) ?>">MENU</a>
+                <a class="btn btn-small btn-ghost" href="<?= url('admin/restaurants/edit/' . (int)$r['id']) ?>">EDIT</a>
+                <a class="btn btn-small btn-danger" href="<?= url('admin/restaurants/delete/' . (int)$r['id']) ?>" data-confirm="Delete this restaurant and all its menu items?">DELETE</a>
             </td>
         </tr>
     <?php endforeach; ?>
