@@ -10,7 +10,7 @@
                 <?php if (!empty($errors['name'])): ?><span class="field-error"><?= e($errors['name']) ?></span><?php endif; ?>
             </div>
 
-            <div class="form-group">
+            <div class="form_group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" required value="<?= e($old['email']) ?>">
                 <?php if (!empty($errors['email'])): ?><span class="field-error"><?= e($errors['email']) ?></span><?php endif; ?>
