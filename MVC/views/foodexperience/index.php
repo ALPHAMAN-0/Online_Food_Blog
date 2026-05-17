@@ -8,7 +8,7 @@
         <?php if (is_member() || is_admin()): ?>
             <a class="btn" href="<?= url('food-experience/new') ?>">Share your experience</a>
         <?php elseif (!is_logged_in()): ?>
-            <a class="btn btn-ghost" href="<?= url('login') ?>">Log in to post</a>
+            <a class="btn btn-ghost" href="<?= url('login') ?>">Log in to post </a>
         <?php endif; ?>
     </div>
 
