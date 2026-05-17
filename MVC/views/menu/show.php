@@ -51,9 +51,9 @@
                             <?php if (is_logged_in() && ($rv['user_id'] == current_user_id() || is_admin())): ?>
                                 <div class="actions">
                                     <?php if ($rv['user_id'] == current_user_id()): ?>
-                                        <button type="button" class="del-review">Delete</button>
+                                        <button type="button" class="del_review">Delete</button>
                                     <?php else: ?>
-                                        <button type="button" class="del-review-admin">Delete (admin)</button>
+                                        <button type="button" class="del_review_admin">Delete (admin)</button>
                                     <?php endif; ?>
                                 </div>
                             <?php endif; ?>
