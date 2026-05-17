@@ -1,5 +1,4 @@
 <?php
-// login handler
 require_once __DIR__ . '/../../models/User.php';
 
 $errors = [];
@@ -22,14 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $user = $um->find_by_email($email);
         if ($user && password_verify($pw, $user['password_hash'])) 
             {
-            // good - log them in
+        
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['name']    = $user['name'];
             $_SESSION['role']    = $user['role'];
 
             if ($remember) 
                 {
-                // random token, store hashed version, send raw to cookie
+    
                 $raw = bin2hex(random_bytes(32));
                 $um->set_remember_token($user['id'], $raw);
                 setcookie('remember_token', $raw, time() + (60 * 60 * 24 * 30), '/', '', false, true);
