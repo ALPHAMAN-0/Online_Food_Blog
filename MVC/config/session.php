@@ -57,3 +57,28 @@ function require_member() {
         die('Members only.');
     }
 }
+
+// CSRF helpers
+function csrf_token() {
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+function csrf_field() {
+    return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') . '">';
+}
+
+function csrf_check() {
+    $sent = $_POST['csrf_token'] ?? ($_SERVER['HTTP_X_CSRF_TOKEN'] ?? '');
+    if (!hash_equals($_SESSION['csrf_token'] ?? '', $sent)) {
+        $is_api = strpos($_SERVER['REQUEST_URI'] ?? '', '/api/') !== false
+               || strpos($_GET['route'] ?? '', 'api/') === 0;
+        if ($is_api) {
+            json_response(['ok' => false, 'error' => 'CSRF token mismatch.'], 419);
+        }
+        http_response_code(419);
+        die('CSRF token mismatch. Please go back and try again.');
+    }
+}

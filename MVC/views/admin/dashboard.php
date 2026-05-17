@@ -11,8 +11,12 @@
         <div class="value"><?= $counts['menu_items'] ?></div>
     </div>
     <div class="tile">
-        <div class="label">Reviews</div>
+        <div class="label">Food item reviews</div>
         <div class="value"><?= $counts['reviews'] ?></div>
+    </div>
+    <div class="tile">
+        <div class="label">Restaurant reviews</div>
+        <div class="value"><?= $counts['rest_reviews'] ?></div>
     </div>
     <div class="tile">
         <div class="label">The food experience posts</div>

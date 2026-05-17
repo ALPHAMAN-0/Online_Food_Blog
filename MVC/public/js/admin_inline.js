@@ -7,7 +7,7 @@
             var id = btn.getAttribute('data-fe-admin-delete');
             var redirect = btn.getAttribute('data-redirect');
             if (!confirm('Delete this post (admin)? This will remove its comments too.')) return;
-            fetch(BASE + '/api/admin/posts/' + id, { method: 'DELETE' })
+            fetch(BASE + '/api/admin/posts/' + id, { method: 'DELETE', headers: { 'X-CSRF-Token': window.CSRF_TOKEN || '' } })
                 .then(function (r) { return r.json(); })
                 .then(function (d) {
                     if (!d.ok) { alert(d.error || 'Failed.'); return; }

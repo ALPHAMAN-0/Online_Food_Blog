@@ -8,6 +8,7 @@
         <?php endif; ?>
 
         <form method="post" action="<?= url('login') ?>" data-validate novalidate>
+            <?= csrf_field() ?>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" required value="<?= e($old['email']) ?>">

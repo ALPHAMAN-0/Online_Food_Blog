@@ -23,7 +23,6 @@ MVC/public/uploads/profiles/*
 Dockerfile
 docker-compose.yml
 docker/
-.dockerignore
 
 # local docker-compose override (developers customize this locally)
 docker-compose.override.yml

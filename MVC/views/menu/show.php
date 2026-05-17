@@ -24,6 +24,7 @@
 
         <?php if (is_member()): ?>
             <form id="review-form" data-validate novalidate style="margin: 1rem 0 2rem;">
+                <?= csrf_field() ?>
                 <div class="form-group">
                     <label for="review-comment">Add your review</label>
                     <textarea id="review-comment" name="comment" required data-max="500" placeholder="What did you think?"></textarea>

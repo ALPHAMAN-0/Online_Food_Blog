@@ -4,6 +4,7 @@ require_login();
 require_once __DIR__ . '/../../models/User.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') redirect('/profile');
+csrf_check();
 
 $name  = trim($_POST['name'] ?? '');
 $email = trim($_POST['email'] ?? '');

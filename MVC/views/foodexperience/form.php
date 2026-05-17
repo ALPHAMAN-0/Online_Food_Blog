@@ -5,6 +5,7 @@
         <p style="color:var(--muted);margin-bottom:1.5rem;">Tell people what you ate, where, and how it made you feel.</p>
 
         <form method="post" data-validate novalidate>
+            <?= csrf_field() ?>
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" required maxlength="200" value="<?= e($data['title']) ?>">

@@ -25,6 +25,7 @@ $restaurant = $rm->find($data['restaurant_id']);
 if (!$restaurant) { http_response_code(404); die('Restaurant not found'); }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_check();
     $data['name']        = trim($_POST['name'] ?? '');
     $data['description'] = trim($_POST['description'] ?? '');
     $price_raw           = $_POST['price'] ?? '';

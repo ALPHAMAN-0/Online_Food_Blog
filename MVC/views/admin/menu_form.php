@@ -3,6 +3,7 @@
 
 <div class="form-card" style="max-width:680px;margin-top:1rem;">
     <form method="post" enctype="multipart/form-data" data-validate novalidate>
+        <?= csrf_field() ?>
         <div class="form-group">
             <label for="name">Item name</label>
             <input type="text" name="name" id="name" required maxlength="150" value="<?= e($data['name']) ?>">

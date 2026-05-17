@@ -21,6 +21,7 @@
     <div class="profile-card">
         <h2>Edit Profile</h2>
         <form method="post" action="<?= url('profile/update') ?>" enctype="multipart/form-data" data-validate novalidate>
+            <?= csrf_field() ?>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" required value="<?= e($user['name']) ?>">
@@ -40,6 +41,7 @@
     <div class="profile-card">
         <h2>Change Password</h2>
         <form method="post" action="<?= url('profile/password') ?>" data-validate novalidate>
+            <?= csrf_field() ?>
             <div class="form-group">
                 <label for="current">Current Password</label>
                 <input type="password" name="current" id="current" required>

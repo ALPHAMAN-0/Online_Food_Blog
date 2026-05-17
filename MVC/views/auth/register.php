@@ -4,6 +4,7 @@
         <p style="color:var(--muted);margin-bottom:1.5rem;">Create an account to share your reviews and food experiences.</p>
 
         <form method="post" action="<?= url('register') ?>" data-validate novalidate>
+            <?= csrf_field() ?>
             <div class="form-group">
                 <label for="name">Full name</label>
                 <input type="text" name="name" id="name" required value="<?= e($old['name']) ?>">

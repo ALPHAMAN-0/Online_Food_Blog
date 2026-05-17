@@ -1,11 +1,13 @@
 <?php
-// single restaurant page (public) - shows info + menu items
+// single restaurant page (public) - shows info + menu items + restaurant reviews
 require_once __DIR__ . '/../../models/Restaurant.php';
 require_once __DIR__ . '/../../models/MenuItem.php';
+require_once __DIR__ . '/../../models/RestaurantReview.php';
 
 $id = (int)($_GET['id'] ?? 0);
 $rm = new Restaurant($pdo);
 $mm = new MenuItem($pdo);
+$rrm = new RestaurantReview($pdo);
 $restaurant = $rm->find($id);
 if (!$restaurant) {
     http_response_code(404);
@@ -16,6 +18,7 @@ if (!$restaurant) {
     return;
 }
 $items = $mm->by_restaurant($id);
+$rest_reviews = $rrm->by_restaurant($id);
 
 $page_title = $restaurant['name'];
 require __DIR__ . '/../../views/layouts/header.php';

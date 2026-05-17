@@ -12,7 +12,10 @@ $title = isset($page_title) ? $page_title . ' - Foodly' : 'Foodly - Online Food 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= asset('css/style.css') ?>">
-    <script>window.BASE_URL = <?= json_encode(BASE_URL) ?>;</script>
+    <script>
+        window.BASE_URL = <?= json_encode(BASE_URL) ?>;
+        window.CSRF_TOKEN = '<?= e(csrf_token()) ?>';
+    </script>
 </head>
 <body>
 

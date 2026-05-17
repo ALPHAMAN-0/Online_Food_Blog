@@ -28,6 +28,7 @@ $data = [
 $rm = new Restaurant($pdo);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_check();
     $data['title']         = trim($_POST['title'] ?? '');
     $data['content']       = trim($_POST['content'] ?? '');
     $data['post_type']     = $_POST['post_type'] ?? 'food';

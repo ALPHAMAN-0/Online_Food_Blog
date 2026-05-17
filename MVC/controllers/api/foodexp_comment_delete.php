@@ -2,6 +2,8 @@
 // AJAX: author deletes own food-experience comment
 require_once __DIR__ . '/../../models/FoodComment.php';
 
+csrf_check();
+
 if (!is_logged_in()) json_response(['ok'=>false,'error'=>'Login required.'], 401);
 
 $id = (int)($_GET['id'] ?? 0);

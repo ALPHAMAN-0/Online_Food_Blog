@@ -2,6 +2,8 @@
 // AJAX: admin deletes any review
 require_once __DIR__ . '/../../models/Review.php';
 
+csrf_check();
+
 if (!is_admin()) json_response(['ok'=>false,'error'=>'Admins only.'], 403);
 
 $id = (int)($_GET['id'] ?? 0);

@@ -89,3 +89,16 @@ CREATE TABLE food_experience_comments (
     INDEX idx_fec_post (post_id),
     INDEX idx_fec_user (user_id)
 ) ENGINE=InnoDB;
+
+-- 7. restaurant_reviews  (Task 3 extension: comments on restaurants)
+CREATE TABLE restaurant_reviews (
+    id            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    restaurant_id INT UNSIGNED NOT NULL,
+    user_id       INT UNSIGNED NOT NULL,
+    comment       TEXT NOT NULL,
+    created_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_rrev_restaurant FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE,
+    CONSTRAINT fk_rrev_user       FOREIGN KEY (user_id)       REFERENCES users(id)       ON DELETE CASCADE,
+    INDEX idx_rrev_restaurant (restaurant_id),
+    INDEX idx_rrev_user       (user_id)
+) ENGINE=InnoDB;

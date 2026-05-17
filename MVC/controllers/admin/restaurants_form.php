@@ -17,6 +17,7 @@ if ($editing) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_check();
     $data['name']             = trim($_POST['name'] ?? '');
     $data['location']         = trim($_POST['location'] ?? '');
     $data['area']             = trim($_POST['area'] ?? '');

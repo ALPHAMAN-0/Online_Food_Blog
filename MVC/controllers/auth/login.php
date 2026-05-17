@@ -4,8 +4,9 @@ require_once __DIR__ . '/../../models/User.php';
 $errors = [];
 $old = ['email' => ''];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
+    csrf_check();
     $email = trim($_POST['email'] ?? '');
     $pw    = $_POST['password'] ?? '';
     $remember = !empty($_POST['remember']);

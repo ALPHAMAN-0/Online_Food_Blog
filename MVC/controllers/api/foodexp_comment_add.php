@@ -3,6 +3,8 @@
 require_once __DIR__ . '/../../models/FoodPost.php';
 require_once __DIR__ . '/../../models/FoodComment.php';
 
+csrf_check();
+
 if (!is_logged_in()) json_response(['ok'=>false,'error'=>'Login required.'], 401);
 if (is_admin() === false && is_member() === false) json_response(['ok'=>false,'error'=>'Members and admins only.'], 403);
 

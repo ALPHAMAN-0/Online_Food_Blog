@@ -1,14 +1,14 @@
-// AJAX add + delete reviews on menu item detail page
+// AJAX add + delete reviews on restaurant detail page
 
 (function () {
     var BASE = window.BASE_URL || '';
-    var section = document.getElementById('reviews-section');
+    var section = document.getElementById('restaurant-reviews-section');
     if (!section) return;
-    var menuId = section.dataset.menuId;
-    var form = document.getElementById('review-form');
-    var list = document.getElementById('review-list');
-    var errBox = document.getElementById('review-error');
-    var noMsg  = document.getElementById('no-reviews-msg');
+    var restaurantId = section.dataset.restaurantId;
+    var form = document.getElementById('rest-review-form');
+    var list = document.getElementById('rest-review-list');
+    var errBox = document.getElementById('rest-review-error');
+    var noMsg  = document.getElementById('no-rest-reviews-msg');
 
     function escapeHtml(s) {
         var d = document.createElement('div');
@@ -26,7 +26,7 @@
         var letter = (rv.author || '?').charAt(0).toUpperCase();
         var date = rv.created_at ? new Date(rv.created_at.replace(' ', 'T')).toLocaleString() : '';
         var actions = mine
-            ? '<div class="actions"><button type="button" class="del-review">Delete</button></div>'
+            ? '<div class="actions"><button type="button" class="del-rest-review">Delete</button></div>'
             : '';
         return '<li class="review" data-review-id="' + rv.id + '">' +
             '<div class="avatar" style="background:' + colorFromName(rv.author) + '">' + escapeHtml(letter) + '</div>' +
@@ -43,18 +43,23 @@
             e.preventDefault();
             errBox.style.display = 'none';
             errBox.textContent = '';
-            var ta = document.getElementById('review-comment');
+            var ta = document.getElementById('rest-review-comment');
             var txt = ta.value.trim();
             if (!txt) {
                 errBox.textContent = 'Please write something.';
                 errBox.style.display = 'block';
                 return;
             }
+            if (txt.length > 500) {
+                errBox.textContent = 'Review is too long (max 500 characters).';
+                errBox.style.display = 'block';
+                return;
+            }
             var fd = new FormData();
-            fd.append('menu_item_id', menuId);
+            fd.append('restaurant_id', restaurantId);
             fd.append('comment', txt);
             fd.append('csrf_token', window.CSRF_TOKEN || '');
-            fetch(BASE + '/api/reviews/add', { method: 'POST', body: fd })
+            fetch(BASE + '/api/restaurant-reviews/add', { method: 'POST', body: fd })
                 .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
                 .then(function (resp) {
                     if (!resp.ok || !resp.data.ok) {
@@ -73,7 +78,6 @@
         });
     }
 
-    // delegate delete clicks
     if (list) {
         list.addEventListener('click', function (e) {
             var t = e.target;
@@ -82,17 +86,17 @@
             if (!li) return;
             var id = li.dataset.reviewId;
             var headers = { 'X-CSRF-Token': window.CSRF_TOKEN || '' };
-            if (t.classList.contains('del-review')) {
+            if (t.classList.contains('del-rest-review')) {
                 if (!confirm('Delete your review?')) return;
-                fetch(BASE + '/api/reviews/' + id, { method: 'DELETE', headers: headers })
+                fetch(BASE + '/api/restaurant-reviews/' + id, { method: 'DELETE', headers: headers })
                     .then(function (r) { return r.json(); })
                     .then(function (d) {
                         if (d.ok) li.remove();
                         else alert(d.error || 'Could not delete.');
                     });
-            } else if (t.classList.contains('del-review-admin')) {
+            } else if (t.classList.contains('del-rest-review-admin')) {
                 if (!confirm('Delete this review (admin)?')) return;
-                fetch(BASE + '/api/admin/reviews/' + id, { method: 'DELETE', headers: headers })
+                fetch(BASE + '/api/admin/restaurant-reviews/' + id, { method: 'DELETE', headers: headers })
                     .then(function (r) { return r.json(); })
                     .then(function (d) {
                         if (d.ok) li.remove();

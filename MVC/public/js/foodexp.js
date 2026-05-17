@@ -48,6 +48,7 @@
             var fd = new FormData();
             fd.append('post_id', postId);
             fd.append('comment', txt);
+            fd.append('csrf_token', window.CSRF_TOKEN || '');
             fetch(BASE + '/api/food-exp/comments/add', { method: 'POST', body: fd })
                 .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
                 .then(function (resp) {
@@ -69,9 +70,10 @@
             var li = t.closest('.review');
             if (!li) return;
             var id = li.dataset.commentId;
+            var headers = { 'X-CSRF-Token': window.CSRF_TOKEN || '' };
             if (t.classList.contains('del-comment')) {
                 if (!confirm('Delete your comment?')) return;
-                fetch(BASE + '/api/food-exp/comments/' + id, { method: 'DELETE' })
+                fetch(BASE + '/api/food-exp/comments/' + id, { method: 'DELETE', headers: headers })
                     .then(function (r) { return r.json(); })
                     .then(function (d) {
                         if (d.ok) li.remove();
@@ -79,7 +81,7 @@
                     });
             } else if (t.classList.contains('del-comment-admin')) {
                 if (!confirm('Delete this comment (admin)?')) return;
-                fetch(BASE + '/api/admin/comments/' + id, { method: 'DELETE' })
+                fetch(BASE + '/api/admin/comments/' + id, { method: 'DELETE', headers: headers })
                     .then(function (r) { return r.json(); })
                     .then(function (d) {
                         if (d.ok) li.remove();

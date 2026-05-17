@@ -159,6 +159,17 @@ elseif (preg_match('#^api/admin/comments/(\d+)$#', $route, $m)) {
     $_GET['id'] = $m[1];
     require __DIR__ . '/controllers/api/admin_comment_delete.php';
 }
+elseif ($route === 'api/restaurant-reviews/add') {
+    require __DIR__ . '/controllers/api/restaurant_reviews_add.php';
+}
+elseif (preg_match('#^api/restaurant-reviews/(\d+)$#', $route, $m)) {
+    $_GET['id'] = $m[1];
+    require __DIR__ . '/controllers/api/restaurant_reviews_delete.php';
+}
+elseif (preg_match('#^api/admin/restaurant-reviews/(\d+)$#', $route, $m)) {
+    $_GET['id'] = $m[1];
+    require __DIR__ . '/controllers/api/admin_restaurant_review_delete.php';
+}
 
 else {
     http_response_code(404);
