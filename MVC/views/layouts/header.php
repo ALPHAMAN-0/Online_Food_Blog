@@ -1,5 +1,5 @@
 <?php
-// shared header partial. expects $page_title optionally set
+
 $title = isset($page_title) ? $page_title . ' - Foodly' : 'Foodly - Online Food Blog';
 ?>
 <!DOCTYPE html>
@@ -40,9 +40,12 @@ $title = isset($page_title) ? $page_title . ' - Foodly' : 'Foodly - Online Food 
 $err = flash('flash_error');
 $ok  = flash('flash_success');
 ?>
-<?php if ($err || $ok): ?>
+<?php 
+if ($err || $ok): ?>
 <div class="container" style="padding-top:1.5rem;padding-bottom:0;">
     <?php if ($err): ?><div class="flash flash-error"><?= e($err) ?></div><?php endif; ?>
     <?php if ($ok): ?><div class="flash flash-success"><?= e($ok) ?></div><?php endif; ?>
 </div>
-<?php endif; ?>
+<?php 
+endif; 
+?>
