@@ -6,7 +6,7 @@
         <form method="post" action="<?= url('register') ?>" data-validate novalidate>
             <?= csrf_field() ?>
             <div class="form-group">
-                <label for="name">Full name</label>
+                <label for="name">Full Name</label>
                 <input type="text" name="name" id="name" required value="<?= e($old['name']) ?>">
                 <?php if (!empty($errors['name'])): ?><span class="field-error"><?= e($errors['name']) ?></span><?php endif; ?>
             </div>
@@ -24,13 +24,12 @@
             </div>
 
             <div class="form-group">
-                <label for="password_confirm">Confirm password</label>
+                <label for="password_confirm">Confirm Password</label>
                 <input type="password" name="password_confirm" id="password_confirm" required>
                 <?php if (!empty($errors['password_confirm'])): ?><span class="field-error"><?= e($errors['password_confirm']) ?></span><?php endif; ?>
             </div>
-
-            <button class="btn" type="submit">Create account</button>
-            <p style="margin-top:1rem;font-size:0.95rem;">Already have an account? <a href="<?= url('login') ?>">Log in</a></p>
+            <button class="btn" type="submit">Create Account</button>
+            <p style="margin-top:1rem;font-size:0.95rem;">Already have an account? <a href="<?= url('login') ?>">Log In</a></p>
         </form>
     </div>
 </div>
