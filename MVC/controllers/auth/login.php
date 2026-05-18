@@ -1,9 +1,7 @@
 <?php
 require_once __DIR__ . '/../../models/User.php';
-
 $errors = [];
 $old = ['email' => ''];
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
     csrf_check();
@@ -13,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $old['email'] = $email;
 
     if ($email === '' || $pw === '')
-         {
+    {
         $errors['_'] = 'Please enter your email and password.';
     } 
     else 
@@ -43,8 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         }
     }
 }
-
 $page_title = 'Login';
 require __DIR__ . '/../../views/layouts/header.php';
 require __DIR__ . '/../../views/auth/login.php';
 require __DIR__ . '/../../views/layouts/footer.php';
+
+
