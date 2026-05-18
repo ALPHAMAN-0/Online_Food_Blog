@@ -11,7 +11,7 @@
                 <?php if (!empty($errors['name'])): ?><span class="field-error"><?= e($errors['name']) ?></span><?php endif; ?>
             </div>
 
-            <div class="form_group">
+            <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" required value="<?= e($old['email']) ?>">
                 <?php if (!empty($errors['email'])): ?><span class="field-error"><?= e($errors['email']) ?></span><?php endif; ?>
@@ -27,15 +27,6 @@
                 <label for="password_confirm">Confirm password</label>
                 <input type="password" name="password_confirm" id="password_confirm" required>
                 <?php if (!empty($errors['password_confirm'])): ?><span class="field-error"><?= e($errors['password_confirm']) ?></span><?php endif; ?>
-            </div>
-
-            <div class="form-group">
-                <label for="role">Account type</label>
-                <select name="role" id="role">
-                    <option value="member" <?= $old['role'] === 'member' ? 'selected' : '' ?>>Member</option>
-                    <option value="admin"  <?= $old['role'] === 'admin'  ? 'selected' : '' ?>>Admin</option>
-                </select>
-                <?php if (!empty($errors['role'])): ?><span class="field-error"><?= e($errors['role']) ?></span><?php endif; ?>
             </div>
 
             <button class="btn" type="submit">Create account</button>

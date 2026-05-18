@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../../models/User.php';
 
 $errors = [];
-$old = ['name' => '', 'email' => '', 'role' => 'member'];
+$old = ['name' => '', 'email' => ''];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_check();
@@ -11,11 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $pw    = $_POST['password'] ?? '';
     $pw2   = $_POST['password_confirm'] ?? '';
-    $role  = $_POST['role'] ?? 'member';
+    $role  = 'member';
 
     $old['name']  = $name;
     $old['email'] = $email;
-    $old['role']  = $role;
 
     // server-side validation
     if ($name === '')  $errors['name']  = 'Name is required.';
@@ -23,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors['email'] = 'Invalid email format.';
     if (strlen($pw) < 8) $errors['password'] = 'Password must be at least 8 characters.';
     if ($pw !== $pw2) $errors['password_confirm'] = 'Passwords do not match.';
-    if (!in_array($role, ['admin', 'member'], true)) $errors['role'] = 'Pick a valid role.';
 
     if (empty($errors)) {
         $um = new User($pdo);
