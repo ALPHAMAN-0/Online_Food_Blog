@@ -1,5 +1,5 @@
 <?php
-// author deletes their own post (non-ajax fallback)
+
 require_login();
 require_once __DIR__ . '/../../models/FoodPost.php';
 
