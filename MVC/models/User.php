@@ -7,7 +7,6 @@ class User
     {
         $this->pdo = $pdo;
     }
-
     function register($name, $email, $password, $role = 'member') 
     {
         $hash = password_hash($password, PASSWORD_DEFAULT);
@@ -17,21 +16,18 @@ class User
         $stmt->execute([$name, $email, $hash, $role]);
         return $this->pdo->lastInsertId();
     }
-
     function find_by_email($email) 
     {
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = ? LIMIT 1");
         $stmt->execute([$email]);
         return $stmt->fetch();
     }
-
     function find_by_id($id) 
     {
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = ? LIMIT 1");
         $stmt->execute([$id]);
         return $stmt->fetch();
     }
-
     function update_profile($id, $name, $email, $picture_path = null) 
     {
         if ($picture_path) 
@@ -49,28 +45,23 @@ class User
             $stmt->execute([$name, $email, $id]);
         }
     }
-
     function change_password($id, $new_password) 
     {
         $hash = password_hash($new_password, PASSWORD_DEFAULT);
         $stmt = $this->pdo->prepare("UPDATE users SET password_hash=? WHERE id=?");
         $stmt->execute([$hash, $id]);
     }
-
     function set_remember_token($id, $token) 
     {
-        // store hashed token
         $hashed = hash('sha256', $token);
         $stmt = $this->pdo->prepare("UPDATE users SET remember_token=? WHERE id=?");
         $stmt->execute([$hashed, $id]);
     }
-
     function clear_remember_token($id) 
     {
         $stmt = $this->pdo->prepare("UPDATE users SET remember_token=NULL WHERE id=?");
         $stmt->execute([$id]);
     }
-
     function list_members() 
     {
         $stmt = $this->pdo->query(
@@ -86,3 +77,5 @@ class User
         return $stmt->rowCount() > 0;
     }
 }
+
+
