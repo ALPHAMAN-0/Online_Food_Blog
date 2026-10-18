@@ -4,6 +4,18 @@ A PHP MVC web application built for **Web Technologies Project 07**.
 Visitors browse restaurants and food items, members post reviews and food
 experiences, and admins manage all content.
 
+## Architecture / How it Works
+
+```mermaid
+flowchart LR
+    A[User] --> B[Online Food Blog]
+    B --> C{Logic}
+    C --> D[(Data)]
+    C --> E[Output]
+    D --> C
+```
+
+
 ## Tech stack
 - PHP 8 (no framework, hand-rolled MVC)
 - MySQL 5.7+ / MariaDB
