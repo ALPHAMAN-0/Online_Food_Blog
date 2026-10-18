@@ -3,7 +3,6 @@
 **/.DS_Store
 
 # editor / IDE
-.vscode/
 .idea/
 *.swp
 *.swo
@@ -29,8 +28,6 @@ docker-compose.override.yml
 docker-compose.override.yaml
 
 # environment files with secrets
-.env
-.env.*
 !.env.example
 
 # named volumes / bind-mount data directories
@@ -41,3 +38,5 @@ db_data/
 # build artifacts / caches
 *.pid
 .docker/
+config.bat
+node_modules

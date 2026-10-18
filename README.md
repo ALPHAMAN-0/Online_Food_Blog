@@ -7,12 +7,14 @@ experiences, and admins manage all content.
 ## Architecture / How it Works
 
 ```mermaid
-flowchart LR
-    A[User] --> B[Online Food Blog]
-    B --> C{Logic}
-    C --> D[(Data)]
-    C --> E[Output]
-    D --> C
+flowchart TD
+    Router --> Controllers
+    Controllers --> Models
+    Controllers --> Views
+    Controllers --> Config
+    Models --> Config
+    Config --> Database
+    Views --> Public
 ```
 
 
