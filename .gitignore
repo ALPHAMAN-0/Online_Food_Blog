@@ -38,5 +38,4 @@ db_data/
 # build artifacts / caches
 *.pid
 .docker/
-config.bat
 node_modules
